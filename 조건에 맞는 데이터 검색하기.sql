@@ -3,12 +3,12 @@ SELECT  *
   FROM  CITY
  WHERE  COUNTRYCODE = 'USA' AND POPULATION > 100000;
  
- /*HACKERRANK 문제 Select By ID*/
- SELECT  *
-   FROM  CITY
-  WHERE  ID = 1661
+/*HACKERRANK 문제 Select By ID*/
+SELECT  *
+  FROM  CITY
+ WHERE  ID = 1661
   
- /*HACKERRANK 문제 Weather Observation Station 6*/
+/*HACKERRANK 문제 Weather Observation Station 6*/
 SELECT  CITY
   FROM  STATION
  WHERE  CITY LIKE 'a%'
@@ -16,3 +16,22 @@ SELECT  CITY
     OR  CITY LIKE 'i%'
     OR  CITY LIKE 'o%'
     OR  CITY LIKE 'u%'
+    
+/*HACKERRANK 문제 Weather Observation Station 12*/
+SELECT  DISTINCT CITY
+  FROM  STATION
+ WHERE  CITY NOT LIKE 'a%'
+   AND  CITY NOT LIKE 'e%'
+   AND  CITY NOT LIKE 'i%'
+   AND  CITY NOT LIKE 'o%'
+   AND  CITY NOT LIKE 'u%'
+   AND  CITY NOT LIKE '%a'
+   AND  CITY NOT LIKE '%e'
+   AND  CITY NOT LIKE '%i'
+   AND  CITY NOT LIKE '%o'
+   AND  CITY NOT LIKE '%u'
+
+SELECT  DISTINCT CITY
+  FROM  STATION
+ WHERE  CITY REGEXP '^[^aeiou]'
+   AND  CITY REGEXP '[^aeiou]$'
