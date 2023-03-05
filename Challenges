@@ -1,0 +1,20 @@
+select a.hacker_id, a.name, count(b.challenge_id) as challenges_created
+from hackers as a
+left join challenges as b
+on a.hacker_id = b.hacker_id
+group by a.hacker_id, a.name
+having challenges_created = (select max(challenges_created)
+                             from (
+                                 select hacker_id, count(challenge_id) as challenges_created
+                                 from challenges
+                                 group by hacker_id) sub
+                            )
+or challenges_created in (select challenges_created
+                            from (
+                                select hacker_id, count(challenge_id) as challenges_created
+                                from challenges
+                                group by hacker_id) sub
+                            group by challenges_created
+                            having count(challenges_created) = 1
+                        )
+order by challenges_created desc, a.hacker_id
